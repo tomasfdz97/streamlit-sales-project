@@ -321,4 +321,3 @@ left3, right3 = st.columns(2)
 
 left3.plotly_chart(fig_evolution_branch)
 right3.plotly_chart(fig_spend_gender)
-
