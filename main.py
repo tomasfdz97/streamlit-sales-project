@@ -13,6 +13,13 @@ st.set_page_config(
     initial_sidebar_state='expanded',
 )
 
+hide_st_style = """ 
+<style> 
+#MainMenu {visibility : hidden;}
+footer {visibiliti: hodden;}
+</style>
+"""
+st.markdown(hide_st_style, unsafe_allow_html=True)
 # ----- Uso y configuración de los datos ------ #
 
 df = pd.read_excel('supermarket_sales.xlsx')
@@ -116,8 +123,6 @@ fig_sales_month=px.bar(sales_month,
                        template='plotly_white',
                        text_auto=True,
                        labels={'Month_name':'Month'},
-                       height=600,
-                       width=900,
                        color_discrete_sequence=['#2254D4','#D43522','#18CB2D'] *len(sales_month),
 )
 
@@ -151,8 +156,6 @@ fig_sales_product_line=px.bar(sales_product_line,
                             text_auto=True,
                             labels={'Product_line':'Product line'},
                             orientation='h',
-                            height=600,
-                            width=900,
                             range_x=[0,65000],
                             color_discrete_sequence=['#2254D4','#D43522','#18CB2D'] *len(sales_product_line),
 )
@@ -192,8 +195,6 @@ fig_group_city_gender=px.bar(group_city_gender,
                             barmode='group',
                             text_auto=True, 
                             title='Ventas por ciudad y género',
-                            height=600,
-                            width=900,
                             template='plotly_white',
                             color_discrete_sequence=['#2254D4','#D43522','#81EA7C'] *len(group_city_gender)
 )
@@ -226,8 +227,6 @@ fig_total_branch_payment=px.bar(total_branch_payment,
                                 barmode='group',
                                 text_auto=True, 
                                 title='Total per branch & payment', 
-                                height=600,
-                                width=900,
                                 template='plotly_white',
                                 color_discrete_sequence=['#2254D4','#D43522','#18CB2D'],
 )
@@ -266,8 +265,6 @@ fig_evolution_branch = px.line(evolution_branch,
                                y='Total',
                                color='Branch',
                                title='Total branch evolution',
-                               height=600,
-                               width=900, 
                                template='plotly_white',
                                labels={'Month_name':'Month'},
                                markers=True,
@@ -302,8 +299,6 @@ fig_spend_gender = px.pie(spend_gender,
                           values='Total',
                           hole=0.4,
                           title='Total sales by gender',
-                          height=600,
-                          width=900, 
                           color_discrete_sequence=['#2254D4','#D43522','#18CB2D'] *len(spend_gender)
 )
 
@@ -327,12 +322,3 @@ left3, right3 = st.columns(2)
 left3.plotly_chart(fig_evolution_branch)
 right3.plotly_chart(fig_spend_gender)
 
-# Eliminar marcas de streamlit
-
-hide_st_style = """ 
-<style> 
-#MainMenu {visibility : hidden;}
-footer {visibiliti: hodden;}
-</style>
-"""
-st.markdown(hide_st_style, unsafe_allow_html=True)
